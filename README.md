@@ -1,24 +1,12 @@
-# vue-mart
 
 ## Project setup
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## vue3-多页项目
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- ### page/index/index => index.html
+- ### page/page1/index => page1.html
+- ### page/page2/index => page2.html
