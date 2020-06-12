@@ -7,8 +7,9 @@ const fs = require('fs')
 const PAGES_PATH = path.resolve(__dirname, './src/pages')
 const pages = {}
 
+console.log(process.env.FOO)
 glob.sync(PAGES_PATH + '/*/main.js').forEach(filepath => {
-  // ...
+
   const pageName = path.basename(path.dirname(filepath))
   const templatePath = path.dirname(filepath) + '/index.html'
 
@@ -16,6 +17,7 @@ glob.sync(PAGES_PATH + '/*/main.js').forEach(filepath => {
     // 入口如果不配置直接使用
     templatePath = 'src/pages/index/index.html'
   }
+
   pages[pageName] = {
     entry: filepath,
     templatePath,
@@ -24,6 +26,13 @@ glob.sync(PAGES_PATH + '/*/main.js').forEach(filepath => {
   }
 })
 
+const chainWebpack = config => {
+  config.module
+    .rule('images')
+    .use('url-loader')
+    .loader('url-loader')
+    .tap(options => Object.assign(options, { limit: 10240 }))//限制文件为10k
+}
 
 module.exports = {
   //选项
@@ -31,5 +40,7 @@ module.exports = {
   outputDir: 'dist', //build时候生成的目录名称默认dist
   assetsDir: '', //build时候生成的静态资源的名称默认''
   indexPath: 'index.html',//build时生成输出路径默认'index.html'
-  pages
+  productionSourceMap: process.env.NODE_ENV === 'production' ? false : true, //生产环境不生成soure 
+  pages,
+  chainWebpack
 }

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>hello {{title}}</h1>
+    <h2><img src="@/assets/logo.png" alt=""></h2>
     <ul>
       <li v-for="(good,index) in goods" :key="index">
         {{index+1}} .
@@ -33,3 +34,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+  h1{
+    color: red;
+  }
+</style>
