@@ -5,7 +5,7 @@ npm install
 npm run serve
 ```
 
-## vue3-多页项目
+## vue-cli3-多页项目
 
 - ### page/index/index => index.html
 - ### page/page1/index => page1.html
